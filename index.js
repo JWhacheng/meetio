@@ -16,6 +16,13 @@ app.set('views', path.join(__dirname, './views'))
 // Static files
 app.use(express.static('public'))
 
+// Middleware (logued user, flash messages, actual date)
+app.use((req, res, next) => {
+  const date = new Date()
+  res.locals.year = date.getFullYear()
+  next()
+})
+
 // Routing
 app.use('/', router())
 
