@@ -1,4 +1,5 @@
 const express = require('express')
+const expressLayouts = require('express-ejs-layouts')
 const path = require('path')
 const router = require('./routes')
 require('dotenv').config({ path: '.env' })
@@ -6,6 +7,7 @@ require('dotenv').config({ path: '.env' })
 const app = express()
 
 // Initialize EJS - Template Engine
+app.use(expressLayouts)
 app.set('view engine', 'ejs')
 
 // Views location
