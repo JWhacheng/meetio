@@ -1,14 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-module.exports = function() {
-  router.get('/', (req, res) => {
-    res.render('home')
-  })
+const homeController = require('../controllers/homeController')
+const userController = require('../controllers/userController')
 
-  router.get('/signup', (req, res) => {
-    res.render('signup')
-  })
+module.exports = function() {
+  router.get('/', homeController.home)
+
+  router.get('/signup', userController.formSignup)
 
   return router
 }
