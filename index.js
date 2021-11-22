@@ -2,6 +2,10 @@ const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const path = require('path')
 const router = require('./routes')
+
+const db = require('./config/db')
+db.sync().then(() => console.log('Database connected')).catch((error) => { console.log(error) })
+
 require('dotenv').config({ path: '.env' })
 
 const app = express()
@@ -27,5 +31,5 @@ app.use((req, res, next) => {
 app.use('/', router())
 
 app.listen(process.env.PORT, () => {
-  console.log('The server is listening')
+  console.log('The server is running')
 })
