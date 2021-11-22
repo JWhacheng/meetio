@@ -14,12 +14,12 @@ const Users = db.define('users', {
     type: Sequelize.STRING(30),
     allowNull: false,
     validate: {
-      isEmail: { msg: 'The email is not valid' },
-      unique: {
-        args: true,
-        msg: 'The email is already registered'
-      }
+      isEmail: { msg: 'The email is not valid' }
     },
+    unique: {
+      args: true,
+      msg: 'The email is already registered'
+    }
   },
   password: {
     type: Sequelize.STRING(60),

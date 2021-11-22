@@ -7,7 +7,8 @@ const userController = require('../controllers/userController')
 module.exports = function() {
   router.get('/', homeController.home)
 
-  router.get('/signup', userController.formSignup)
+  router.get('/signup', userController.getSignup)
+  router.post('/signup', userController.postSignup)
 
   return router
 }

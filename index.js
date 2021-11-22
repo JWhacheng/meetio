@@ -1,15 +1,23 @@
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const path = require('path')
+const bodyParser = require('body-parser')
 const router = require('./routes')
 
+// Models and database configuration
 const db = require('./config/db')
 require('./models/Users')
 db.sync().then(() => console.log('Database connected')).catch((error) => { console.log(error) })
 
+// Development variables
 require('dotenv').config({ path: '.env' })
 
+// Principal app
 const app = express()
+
+// Body parser to read forms
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // Initialize EJS - Template Engine
 app.use(expressLayouts)
