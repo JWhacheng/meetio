@@ -22,17 +22,28 @@
 
     <nav class="nav">
       <a href="#">Create Group</a>
-      <a href="#">Login</a>
+      <a href="/signin">Login</a>
       <a href="/signup">Signup</a>
     </nav>
   </header>
+
+  <% if (locals.messages) { %>
+    <% const category = Object.keys(locals.messages) %>
+    <% if (category.length) { %>
+      <% locals.messages[category].forEach(alert => { %>
+        <div class="alertas">
+          <p class="alerta <%= category %>"><%= alert %></p> 
+        </div>
+      <% }); %> 
+    <% } %>  
+  <% } %> 
 
   <%- body %>
 
   <footer class="site-footer contenedor">
     <nav class="nav">
       <a href="#">Create Group</a>
-      <a href="#">Login</a>
+      <a href="/signin">Login</a>
       <a href="/signup">Signup</a>
     </nav>
     <p class="copyright">Todos los derechos reservados Meetio <%- year %> &copy</p>

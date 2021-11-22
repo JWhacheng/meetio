@@ -2,6 +2,9 @@ const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const path = require('path')
 const bodyParser = require('body-parser')
+const flash = require('connect-flash')
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
 const router = require('./routes')
 
 // Models and database configuration
@@ -29,8 +32,21 @@ app.set('views', path.join(__dirname, './views'))
 // Static files
 app.use(express.static('public'))
 
+// Enable cookie parser
+app.use(cookieParser())
+// Create session
+app.use(session({
+  secret: process.env.SECRET,
+  key: process.env.KEY,
+  resave: false,
+  saveUninitialized: false
+}))
+// Enable flash messages
+app.use(flash())
+
 // Middleware (logued user, flash messages, actual date)
 app.use((req, res, next) => {
+  res.locals.messages = req.flash()
   const date = new Date()
   res.locals.year = date.getFullYear()
   next()

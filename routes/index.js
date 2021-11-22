@@ -10,5 +10,7 @@ module.exports = function() {
   router.get('/signup', userController.getSignup)
   router.post('/signup', userController.postSignup)
 
+  router.get('/signin', userController.getSignin)
+
   return router
 }

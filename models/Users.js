@@ -17,7 +17,7 @@ const Users = db.define('users', {
       isEmail: { msg: 'The email is not valid' }
     },
     unique: {
-      args: true,
+      name: true,
       msg: 'The email is already registered'
     }
   },
